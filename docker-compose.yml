@@ -1,0 +1,9 @@
+version: '2'
+services:
+  foruhm:
+    build: .
+    image: foruhm
+    ports:
+      - "8888:8080"
+    volumes:
+      - ./src:/app
