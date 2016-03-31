@@ -1,10 +1,10 @@
-package database.models;
+package db.models;
 
-public class Thread {
+public class Topic {
     private final int id;
     private final String name;
 
-    public Thread(int id, String name) {
+    public Topic(int id, String name) {
         this.id = id;
         this.name = name;
     }

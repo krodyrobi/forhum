@@ -1,9 +1,11 @@
-package database.repositories;
+package db.repositories;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import db.models.User;
 
 public class UserRepository {
     private final Connection connection;

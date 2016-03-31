@@ -7,7 +7,6 @@ WORKDIR $CATALINA_HOME
 
 COPY docker/tomcat.tar.gz tomcat.tar.gz
 COPY docker/entry.sh entry.sh
-COPY docker/reload.sh reload.sh
 
 RUN set -x \
   && tar -xvf tomcat.tar.gz --strip-components=1 \

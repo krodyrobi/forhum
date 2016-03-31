@@ -13,6 +13,7 @@ public class Test extends HttpServlet {
         final PrintWriter writerB = response.getWriter();
         writerA.println("A1");
         writerB.println("B1");
+        writerB.println("C4444");
 
 //        request.setAttribute("result", result);
 //        request.getRequestDispatcher("/WEB-INF/jsp/test.jsp").forward(request, response);

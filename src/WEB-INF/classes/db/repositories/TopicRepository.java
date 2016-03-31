@@ -1,4 +1,4 @@
-package database.repositories;
+package db.repositories;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -7,30 +7,32 @@ import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ThreadRepository {
+import db.models.Topic;
+
+public class TopicRepository {
     private final Connection connection;
 
-    public ThreadRepository(Connection connection) {
+    public TopicRepository(Connection connection) {
         this.connection = connection;
 
         try {
             Statement statement = connection.createStatement();
 
-            statement.executeUpdate("create table if not exists thread (id integer primary key autoincrement, name string)");
+            statement.executeUpdate("create table if not exists topic (id integer primary key autoincrement, name string)");
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public Thread create(String name) {
+    public Topic create(String name) {
         try {
             Statement statement = connection.createStatement();
 
-            statement.executeUpdate("insert into thread(name) values('" + name +  "')");
+            statement.executeUpdate("insert into topic(name) values('" + name +  "')");
 
             ResultSet rs = statement.getGeneratedKeys();
 
-            if (rs.next()) return new Thread(rs.getInt("last_insert_rowid()"), name);
+            if (rs.next()) return new Topic(rs.getInt("last_insert_rowid()"), name);
             else return null;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -39,13 +41,13 @@ public class ThreadRepository {
         return null;
     }
 
-    public Thread get(int id) {
+    public Topic get(int id) {
         try {
             Statement statement = connection.createStatement();
 
-            ResultSet rs = statement.executeQuery("select * from thread where id='" + id + "'");
+            ResultSet rs = statement.executeQuery("select * from topic where id='" + id + "'");
 
-            if (rs.next()) return new Thread(id, rs.getString("name"));
+            if (rs.next()) return new Topic(id, rs.getString("name"));
             else return null;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -54,21 +56,21 @@ public class ThreadRepository {
         return null;
     }
 
-    public List<Thread> all() {
-        List<Thread> threads = new LinkedList<>();
+    public List<Topic> all() {
+        List<Topic> topics = new LinkedList<>();
 
         try {
             Statement statement = connection.createStatement();
 
-            ResultSet rs = statement.executeQuery("select * from thread");
+            ResultSet rs = statement.executeQuery("select * from topic");
 
             while (rs.next()) {
-                threads.add(new Thread(rs.getInt("id"), rs.getString("name")));
+                topics.add(new Topic(rs.getInt("id"), rs.getString("name")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return threads;
+        return topics;
     }
 }

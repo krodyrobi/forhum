@@ -1,8 +1,12 @@
-package database;
+package db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import db.repositories.*;
+import db.models.*;
+
 
 public class Test {
     public static void main(String[] args) {
@@ -14,15 +18,15 @@ public class Test {
             User me = userRepository.create("dragos", "pass");
             userRepository.get("dragos", "pass");
 
-            ThreadRepository threadRepository = new ThreadRepository(connection);
+            TopicRepository topicRepository = new TopicRepository(connection);
 
-            Thread thread = threadRepository.create("topic");
-            threadRepository.all();
+            Topic topic = topicRepository.create("topic");
+            topicRepository.all();
 
             PostRepository postRepository = new PostRepository(connection);
 
-            postRepository.create(me, thread, "hi");
-            postRepository.all(thread);
+            postRepository.create(me, topic, "hi");
+            postRepository.all(topic);
         } catch (SQLException e) {
             e.printStackTrace();
         }

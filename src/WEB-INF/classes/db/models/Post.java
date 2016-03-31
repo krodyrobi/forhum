@@ -1,15 +1,15 @@
-package database.models;
+package db.models;
 
 public class Post {
     private final int id;
     private final User user;
-    private final Thread thread;
+    private final Topic topic;
     private final String message;
 
-    public Post(int id, User user, Thread thread, String message) {
+    public Post(int id, User user, Topic topic, String message) {
         this.id = id;
         this.user = user;
-        this.thread = thread;
+        this.topic = topic;
         this.message = message;
     }
 
@@ -21,8 +21,8 @@ public class Post {
         return user;
     }
 
-    public Thread getThread() {
-        return thread;
+    public Topic getTopic() {
+        return topic;
     }
 
     public String getMessage() {
