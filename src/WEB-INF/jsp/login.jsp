@@ -11,17 +11,24 @@
   <head>
   
   <body>
+  
+    <div><h2>Login</h2></div>
+    
     <c:if test="${not empty errors}">
+      <ul>
       <c:forEach items="${errors}" var="error">
-        <p><c:out value="${error}"/></p><br/>
+        <li><c:out value="${error}"/></li>
       </c:forEach>
+      </ul>
     </c:if>
 
     <form method="POST" action="login">
       Username:<input type="text" name="username" value="${username}"/>
-      Password:<input type"password" name="password" />
+      Password:<input type="password" name="password" />
       
       <input type="submit" value="submit">
     </form>
+    
+    <div><a href="register">Register</a></div>
   </body>
 </html>

@@ -56,6 +56,6 @@ public class Login extends HttpServlet {
     
     HttpSession session = request.getSession(true);	    
     session.setAttribute("sessionUser", user); 
-    response.sendRedirect("/WEB-INF/jsp/topics.jsp");
+    response.sendRedirect(request.getContextPath() + "/topics");
   }
 }
