@@ -1,1 +1,0 @@
-<p>The result is ${result}</p>
