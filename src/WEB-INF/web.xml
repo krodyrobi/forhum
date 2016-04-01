@@ -33,4 +33,12 @@
   <session-config>
       <session-timeout>30</session-timeout>
   </session-config>
+  
+  <listener>
+    <listener-class>DBServletListener</listener-class>
+  </listener>
+  <context-param>
+    <param-name>db_url</param-name>
+    <param-value>jdbc:sqlite:/db_data/foruhm.db</param-value>
+  </context-param>
 </web-app>

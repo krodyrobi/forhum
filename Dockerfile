@@ -17,6 +17,7 @@ EXPOSE 8080
 
 # foruhm should be mounted as a host volume
 VOLUME /app
+VOLUME /db_data
 
 CMD ./entry.sh
 

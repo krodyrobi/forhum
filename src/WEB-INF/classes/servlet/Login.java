@@ -8,8 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+
 import java.util.List;
 import java.util.ArrayList;
 
@@ -28,7 +27,7 @@ public class Login extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     String username = request.getParameter("username");
     String password = request.getParameter("password");
-    User user = null;
+    User user;
     
     List<String> errors = new ArrayList<String>();
     
@@ -37,14 +36,12 @@ public class Login extends HttpServlet {
       errors.add("Username not set");
     }
     
-    try {
-      Connection connection = DriverManager.getConnection("jdbc:sqlite:test.db");
-      UserRepository userRepository = new UserRepository(connection);
-      
-      user = userRepository.get(username, password);
-    } catch (SQLException e) {
+    Connection connection = (Connection) getServletContext().getAttribute("con");
+    UserRepository userRepository = new UserRepository(connection);
+    
+    user = userRepository.get(username, password);
+    if (user == null) {
       errors.add("Username or password is incorrect.");
-      System.out.println(e.getMessage());
     }
     
     if (!errors.isEmpty()) {
